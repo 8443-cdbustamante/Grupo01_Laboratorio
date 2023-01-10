@@ -34,20 +34,30 @@
 // Desarrolle el script correspondiente
 function change_myselect(sel) {
   var obj, dbParam, xmlhttp;
-  
+  obj = { table: sel, limit: 20 };
+  dbParam = JSON.stringify(obj);
   xmlhttp = new XMLHttpRequest();
   
   
   xmlhttp.onreadystatechange = function() {
-        
-        obj = this.responseTxt;
-        dbParam = JSON.stringify(obj);
-	       document.getElementById("demo").innerHTML= dbParam;
+          
+          const miobjeto = JSON.parse(this.responseText);
+          let text = "<table border='1'><tr><td>NOMBRE</td><td>PROTAGONISTA</td></tr>"
+          for (let x in miobjeto.peliculas){
+            if(miobjeto.peliculas[x].Genero==sel){
+              text += "<tr><td>" + miobjeto.peliculas[x].Nombre + "</td><td>"
+                + miobjeto.peliculas[x].Protagonista + "</td></tr>";
+            }
+
+          }
+
+          text += "</table>"
+	       document.getElementById("demo").innerHTML= text;
 	
     };
 	
 	
-  xmlhttp.open("GET", "ListaPeliculas.json", true);
+  xmlhttp.open("GET", "./ListaPeliculas.json", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send("x=" + dbParam);
 }
