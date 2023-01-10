@@ -41,7 +41,7 @@ function change_myselect(sel) {
   
   xmlhttp.onreadystatechange = function() {
           
-          const miobjeto = JSON.parse(this.responseText);
+          miobjeto = JSON.parse(this.responseText);
           let text = "<table border='1'><tr><td>NOMBRE</td><td>PROTAGONISTA</td></tr>"
           for (let x in miobjeto.peliculas){
             if(miobjeto.peliculas[x].Genero == sel){
