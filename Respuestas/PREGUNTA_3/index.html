@@ -34,8 +34,8 @@
 // Desarrolle el script correspondiente
 function change_myselect(sel) {
   var obj, dbParam, xmlhttp;
-  //obj = { table: sel, limit: 20 };
-  //dbParam = JSON.stringify(obj);
+  obj = { "table": sel, "limit": 20 };
+  dbParam = JSON.stringify(obj);
   xmlhttp = new XMLHttpRequest();
   
   
@@ -58,8 +58,8 @@ function change_myselect(sel) {
 	
 	
   xmlhttp.open("GET", "ListaPeliculas.json", true);
-  //xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.send();
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("x=" + dbParam);
 }
 </script>
 
