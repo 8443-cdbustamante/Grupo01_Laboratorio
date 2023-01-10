@@ -41,19 +41,31 @@
     </div>
 
 <script>
-  xmlhttp = new XMLHttpRequest(); 
-  xmlhttp.open("GET", "ejemplo.xml", true);
-  xmlhttp.send();
-  xmlDoc = xmlhttp.responseXML;
+      
 
   function CargarDatos() {
-    document.getElementById("resolucion").innerHTML = '';
-    const n = xmlDoc.getElementsByTagName("nombre");
+    
+      xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+        mifun(this);
+      }
+      xhttp.open("GET", "ejemplo.xml");
+      xhttp.send();
+    
+  }
+
+  function mifun(xml){
+    var xmlDoc = xml.responseXML;
+
+    var i,n;
+    n = xmlDoc.getElementsByTagName("nombre");
     console.log(n);
-    for (var i = 0; i < n.length; i++) {
-      document.getElementById("resolucion").innerHTML += xmlDoc.getElementsByTagName("nombre")[i].childNodes[0].nodeValue+" come "+xmlDoc.getElementsByTagName("comida")[i].childNodes[0].nodeValue+"<br>";
+    for (i = 0; i < n.length; i++) {
+      document.getElementById("resolucion").innerHTML += xmlDoc.getElementsByTagName("nombre")[i].childNodes[0].nodeValue+
+      " come "+xmlDoc.getElementsByTagName("comida")[i].childNodes[0].nodeValue+"<br>";
     }
   }
+  
 </script>
 
 </body>
