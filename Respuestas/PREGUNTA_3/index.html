@@ -34,13 +34,14 @@
 // Desarrolle el script correspondiente
 function change_myselect(sel) {
   var obj, dbParam, xmlhttp;
-  obj = { table: sel, limit: 20 };
-  dbParam = JSON.stringify(obj);
+  
   xmlhttp = new XMLHttpRequest();
   
   
   xmlhttp.onreadystatechange = function() {
-    
+        
+        obj = this.responseTxt;
+        dbParam = JSON.stringify(obj);
 	       document.getElementById("demo").innerHTML= dbParam;
 	
     };
