@@ -34,8 +34,8 @@
 // Desarrolle el script correspondiente
 function change_myselect(sel) {
   var obj, dbParam, xmlhttp;
-  obj = { table: sel, limit: 20 };
-  dbParam = JSON.stringify(obj);
+  //obj = { table: sel, limit: 20 };
+  //dbParam = JSON.stringify(obj);
   xmlhttp = new XMLHttpRequest();
   
   
@@ -44,7 +44,7 @@ function change_myselect(sel) {
           const miobjeto = JSON.parse(this.responseText);
           let text = "<table border='1'><tr><td>NOMBRE</td><td>PROTAGONISTA</td></tr>"
           for (let x in miobjeto.peliculas){
-            if(miobjeto.peliculas[x].Genero==sel){
+            if(miobjeto.peliculas[x].Genero == sel){
               text += "<tr><td>" + miobjeto.peliculas[x].Nombre + "</td><td>"
                 + miobjeto.peliculas[x].Protagonista + "</td></tr>";
             }
@@ -59,7 +59,7 @@ function change_myselect(sel) {
 	
   xmlhttp.open("GET", "ListaPeliculas.json", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.send("x=" + dbParam);
+  xmlhttp.send();
 }
 </script>
 
